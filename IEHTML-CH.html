@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+	<title>
+		IEHTML浏览器V3
+	</title>
+	<body style="background-color:black;background-image:url(./src/IEHTML.png);background-repeat:no-repeat;background-position:bottom center">
+		<p style="color:white">退出浏览页面请双击[后退]键来切换~<br/>链接地址不接受前缀（如https://和http://等...）！<p>
+		<form style="color:white">输入要浏览的网址：<br/><input type="text" name="URL" style="background-color:black;color:white"><input type="submit" value="浏览" style="background-color:black;color:white"></form>
+        <form style="color:white">输入要搜索的内容：（百度）<br/><input type="text" name="Search" style="background-color:black;color:white"><input type="submit" value="搜索" style="background-color:black;color:white"></form>
+	</body>
+	<script>
+		function GetQueryString(name)
+        {
+            var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+            var r = window.location.search.substr(1).match(reg);
+            if(r!=null)return unescape(r[2]); return null;
+        };
+        if ((GetQueryString("URL") != null && GetQueryString("URL") != '') || (GetQueryString("Search") != null && GetQueryString("Search") != '')) {
+            if (GetQueryString("URL") != null && GetQueryString("URL")!= ''){
+                location.replace("https://"+GetQueryString("URL"))
+            } else if (GetQueryString("Search") != null && GetQueryString("Search") != ''){
+                location.replace("https://www.baidu.com/s?ie=utf-8&f=8&rsv_bp=&rsv_idx=1&tn=62095104_26_oem_dg&wd="+GetQueryString("Search")+"&fenlei=256&rsv_pq=bdb36ac50000fe68&rsv_t=83a9mfDEQb0AuOK%2Fd0fFiX9a4g9aDH6msGAXJEOETYdATE6T0XNPg6mfdqhSAO8MZRvEgz2Uqioh&rqlang=cn&rsv_enter=0&rsv_dl=tb&rsv_sug3=1&rsv_sug1=1&rsv_sug7=100&rsv_btype=i&prefixsug=1&rsp=1&inputT=2401&rsv_sug4=2401)")
+            }
+        } else {
+        	alert("请输入您要访问或搜索的内容并重试！")
+        }
+    </script>
+</html>

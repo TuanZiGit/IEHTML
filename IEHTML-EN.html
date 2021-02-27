@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+	<title>
+		IEHTML Internet Explorer V3
+	</title>
+	<body style="background-color:black;background-image:url(./src/IEHTML.png);background-repeat:no-repeat;background-position:bottom center">
+		<p style="color:white">Double Click [Back] Button To Exit The Page~<br/>URL Doesn't Accept Prefixes(https://, http://, etc) !<p>
+		<form style="color:white">Enter Your URL:<br/><input type="text" name="URL" style="background-color:black;color:white"><input type="submit" value="Navigate" style="background-color:black;color:white"></form>
+		<form style="color:white">Enter Your Search Item:(Google)<br/><input type="text" name="URL" style="background-color:black;color:white"><input type="submit" value="Search" style="background-color:black;color:white"></form>
+	</body>
+	<script>
+		function GetQueryString(name)
+        {
+            var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+            var r = window.location.search.substr(1).match(reg);
+            if(r!=null)return unescape(r[2]); return null;
+        };
+        if ((GetQueryString("URL") != null && GetQueryString("URL") != '') || (GetQueryString("Search") != null && GetQueryString("Search") != '')) {
+        	if (GetQueryString("URL") != null && GetQueryString("URL") != ''){
+        		location.replace("https://"+GetQueryString("URL"))
+        	} else if (GetQueryString("Search") != null && GetQueryString("Search") != '') {
+        		location.replace("https://www.google.com/search?q="+GetQueryString("Search")+"&oq="+GetQueryString("Search")+"&aqs=chrome..69i57.1582j0j15&sourceid=chrome&ie=UTF-8")
+        	}
+        } else {
+        	alert("Enter Your URL Or Search Item And Try Again!")
+        }
+    </script>
+</html>
